@@ -1,0 +1,7 @@
+= Note 
+:toc:
+:numbered:
+
+== Formalizzazione in Prolog 
+
+Lore ipsum
