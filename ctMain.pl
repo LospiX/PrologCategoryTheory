@@ -61,6 +61,24 @@ componi(Arrows, Dom, Cod, [HMorfs| TMorfs]):-
     member(HMorfs, Morfismi),
 	componi(Arrows, C2, Cod, TMorfs).
 
+% Arrows = [arrow(X1, Y1, [morf1, morf2, ...]), 
+%       arrow(X1, Y2, [morf1, morf2, morf3, ...]), 
+%       arrow(X2, Y1, [morf1, morf2, morf3, ...]), 
+% ]
+oggettoIniziale(X, CatName):-
+    categoria(CatName, Cat),
+    Cat = category(Obj, Arrows),
+    maplist(
+        {Arrows, X, CatName}/[Ob]>>(
+            (
+                member(arrow(X, Ob, L), Arrows),
+                length(L, Len), Len > 0
+            ;
+                composizione(CatName, X, Ob, _)
+            )
+        ), 
+        Obj
+    ).
 
 % Creo una categoria per effettuare test
 categoria(catTest, Cat):- 
